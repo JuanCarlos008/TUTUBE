@@ -1,0 +1,546 @@
+/*estilos generales*/
+
+/*Formateando los estilos por defaul de la web*/
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+
+/*quitandole los estilos a todas las etiquetas a*/
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+.container{
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(90px, 90px) auto;
+    grid-template-rows: 80px auto;
+    grid-template-areas: "header header"
+    "menu contenido";
+    transition: all .3 ease;
+}
+
+.container.active{
+    grid-template-columns: minmax(250px, 18%) auto;
+}
+
+.header{
+    grid-area: header;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    justify-content: space-between;
+    grid-gap: 20px;
+    grid-template-areas: "logo busqueda iconos";
+}
+
+/*Area del logo y el boton del menu*/
+
+.header .contenedor-logo{
+    grid-area: logo;
+    display: flex;
+    align-items: center;
+}
+
+.header .contenedor-logo .boton-menu{
+    border: 0;
+    padding: 10px;
+    background: none;
+    font-size: 18px;
+    border-radius: 100px;
+    width: 50px;
+    height: 50px; 
+    cursor: pointer;
+    outline: none;
+}
+
+.header .contenedor-logo .boton-menu:hover{
+    background: #e7e7e7;
+}
+
+.header .contenedor-logo .logo{
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.header .contenedor-logo .logo .fa-play{
+    color: #fff;
+    background: #ff4444;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-right: 5px;
+    margin-left: 5px;
+    font-size: 10px;
+    position: relative;
+}
+
+
+/*Area de la barra de busqueda*/
+
+.header .barra-busqueda{
+    grid-area: busqueda;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header .barra-busqueda input{
+    min-width: 50%;
+    padding: 1px 0 1px 5px;
+    line-height: 25px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.header .barra-busqueda button{
+    height: 29px;
+    border: 1px solid #ccc;
+    border-left: none;
+    color: #545454;
+    background: #f8f8f8;
+    padding: 0 20px;
+    cursor: pointer;
+}
+
+.header .barra-busqueda button:hover{
+    background: #f5f5f5;
+}
+
+
+/*Botones del lado derecho*/
+
+.header .botones-header{
+    grid-area: iconos;
+    display: flex;
+    align-items: center;
+}
+
+.header .botones-header button{
+    border: none;
+    background: none;
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+    padding: 15px;
+    border-radius: 100px;
+    color: #828282;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.header .botones-header .avatar{
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+}
+
+.header .botones-header .avatar img{
+    vertical-align: top;
+    width: 100%;
+    border-radius: 100px;
+    background: #000;
+}
+
+.header .botones-header button:hover{
+    background: #e7e7e7;
+}
+
+
+/*menu lateral*/
+
+
+.menu-lateral{
+    grid-area: menu;
+    background: #fff;
+    overflow: hidden;
+}
+
+.menu-lateral a{
+    display: block;
+    padding: 10px 35px;
+    color: #000;
+    min-width: 800px;
+}
+
+.menu-lateral a:hover{
+    background: #e5e5e5;
+}
+
+.menu-lateral a.active{
+    background: #e5e5e5;
+    font-weight: bold;
+}
+
+.menu-lateral .fas{
+    color: #606060;
+    margin-right: 35px;
+    width: 20px;
+    text-align: center;
+}
+
+.menu-lateral a.active .fas{
+    color: #ff4444;
+}
+
+.menu-lateral hr{
+    margin: 20px 0;
+    border: 1px solid #dfdfdf;
+}
+
+
+/*contenido principal*/
+
+.main{
+    grid-area: contenido;
+    padding: 20px;
+    background: #f5f5f5;
+}
+
+.main .titulo{
+    margin-bottom: 25px;
+}
+
+.main .grid-videos{
+    display: grid;
+    grid-gap: 40px 20px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.main .grid-videos img{
+    width: 100%;
+}
+
+/*media queries*/
+
+@media screen and (max-width:1200px){
+    .main .grid-videos{
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .header .contenedor-logo .logo span{
+        display: none;
+    }
+
+    .header .barra-busqueda input{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width:992px){
+    .main .grid-videos{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media screen and (max-width:768px){
+    .container{
+        grid-template-rows: auto;
+    }
+
+    .header{
+        padding: 20px;
+        grid-template-columns: auto auto;
+        justify-content: space-between;
+        grid-template-areas: "logo iconos"
+                                "busqueda busqueda";
+    }
+
+    .header .contenedor-logo .logo span{
+        display: inline;
+    }
+
+    .header .barra-busqueda input{
+        min-width: auto;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:576px){
+    .main .grid-videos{
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+
+/*
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+.container{
+    width: 100%;
+    min-height: 100vh;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns:  minmax(90px, 90px) auto;
+    grid-template-rows: 80px auto;
+    grid-template-areas: "header header"
+                            "menu contenido";
+    transition: all .3s ease;
+}
+
+.container.active{
+    grid-template-columns: minmax(300px, 18%) auto;
+}
+
+/* --------------------- Header --------------- */
+
+/*
+.header{
+    grid-area: header;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    justify-content: space-between;
+    grid-gap: 20px;
+    grid-template-areas: "logo busqueda iconos";
+}
+
+.header .contenedor-logo{
+    grid-area: logo;
+    display: flex;
+    align-items: center;
+}
+
+.header .contenedor-logo .boton-menu{
+    border: none;
+    padding: 10px;
+    background: none;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 100px;
+    width: 50px;
+    height: 50px;
+}
+
+.header .contenedor-logo .boton-menu:hover{
+    background: #e7e7e7;
+}
+
+.header .contenedor-logo .logo{
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.header .contenedor-logo .logo .fas{
+    background: #ff4444;
+    padding: 7px 12px;
+    border-radius: 4px;
+    color: #fff;
+    position: relative;
+    margin-right: 4px;
+}
+
+.header .barra-busqueda{
+    grid-area: busqueda;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header .barra-busqueda input{
+    min-width: 70%;
+    padding: 0 15px;
+    height: 35px;
+    line-height: 35px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.header .barra-busqueda button{
+    height: 35px;
+    border: 1px solid #ccc;
+    border-left: none;
+    color: #545454;
+    background: #f8f8f8;
+    padding: 0 20px;
+    cursor: pointer;
+}
+
+.header .barra-busqueda button:hover{
+    background: #f5f5f5;
+}
+
+.header .botones-header{
+    grid-area: iconos;
+    display: flex;
+    align-items: center;
+}
+
+.header .botones-header button{
+    background: none;
+    border: none;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    padding: 7px 12px;
+    border-radius: 100px;
+    color: #828282;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.header .botones-header button:hover{
+    background: #e7e7e7;
+}
+
+.header .botones-header .avatar{
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+
+}
+
+.header .botones-header .avatar img{
+    vertical-align: top;
+    width: 100%;
+    border-radius: 100px;
+    background-color: #000;
+}
+
+/* --------------------- Menu lateral --------------- */
+/*
+.menu-lateral{
+    grid-area: menu;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.menu-lateral a{
+    display: block;
+    padding: 10px 35px;
+    color: #000;
+    min-width: 800px;
+}
+
+.menu-lateral a:hover{
+    background-color: #e5e5e5;
+}
+
+.menu-lateral a.active{
+    background-color: #e5e5e5;
+    font-weight: bold;
+}
+
+.menu-lateral .fas{
+    color: #606060;
+    margin-right: 35px;
+    width: 20px;
+    text-align: center;
+}
+
+.menu-lateral a.active .fas{
+    color: #ff4444;
+}
+
+.menu-lateral hr{
+    margin: 20px 0;
+    border: 1px solid #dfdfdf;
+}
+
+/* --------------------- Main --------------- */
+/*
+.main{
+    grid-area: contenido;
+    padding: 40px;
+}
+
+.main .titulo{
+    margin-bottom: 20px;
+}
+
+.main .grid-videos{
+    display: grid;
+    grid-gap: 40px 20px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.main .grid-videos .video{
+    width: 100%;
+    display: block;
+}
+
+.main .grid-videos .video img{
+    width: 100%;
+}
+
+/* --------------------- Media Queries --------------- */
+/*
+@media screen and (max-width: 1200px){
+    .main .grid-videos{
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .header .contenedor-logo .logo span{
+        display: none;
+    }
+
+    .header .barra-busqueda input{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 992px){
+    .main .grid-videos{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 768px){
+    .container{
+        grid-template-rows: auto;
+    }
+
+    .header{
+        padding: 20px;
+        grid-template-columns: auto auto;
+        justify-content: space-between;
+        grid-template-areas: "logo iconos"
+                                "busqueda busqueda";
+    }
+
+    .header .contenedor-logo .logo span{
+        display: inline;
+    }
+
+    .header .barra-busqueda input{
+        min-width: auto;
+        width: 100%;
+
+    }
+}
+
+@media screen and (max-width: 576px){
+    .main .grid-videos{
+        grid-template-columns: 1fr;
+    }
+}
